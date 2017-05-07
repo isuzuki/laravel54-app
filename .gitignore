@@ -11,3 +11,7 @@ Homestead.yaml
 
 # for PHP-CS-Fixer
 .php_cs.cache
+
+# for ide-helper
+.phpstorm.meta.php
+_ide_helper.php
