@@ -11,6 +11,14 @@ abstract class DuskTestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
+     * @return string
+     */
+    protected function baseUrl()
+    {
+        return 'http://nginx';
+    }
+
+    /**
      * Prepare for Dusk test execution.
      *
      * @beforeClass
@@ -18,7 +26,8 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        static::startChromeDriver();
+        // comment out for selenium on docker
+        // static::startChromeDriver();
     }
 
     /**
@@ -29,7 +38,7 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()
+            'http://selenium:4444/wd/hub', DesiredCapabilities::chrome()
         );
     }
 }
