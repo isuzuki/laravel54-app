@@ -29,5 +29,10 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
             $this->app->register(\Laracademy\Commands\MakeServiceProvider::class);
         }
+
+        // Register on local and testing environment
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(\Laravel\Dusk\DuskServiceProvider::class);
+        }
     }
 }
