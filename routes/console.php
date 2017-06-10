@@ -16,3 +16,11 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('development:set-ide-helper', function () {
+    // execute on local environment only
+    if (app()->environment('local')) {
+        $this->call('ide-helper:generate');
+        $this->call('ide-helper:meta');
+    }
+})->describe('Set for develop environment');
